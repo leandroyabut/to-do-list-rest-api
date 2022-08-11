@@ -9,6 +9,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import javax.validation.constraints.NotNull;
 import java.util.List;
 
 @Entity
@@ -20,6 +21,9 @@ public class ToDoList {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
+
+    @NotNull
+    private String title;
 
     @OneToMany
     private List<Task> tasks;
