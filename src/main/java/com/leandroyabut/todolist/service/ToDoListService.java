@@ -7,6 +7,7 @@ import com.leandroyabut.todolist.model.ToDoList;
 import com.leandroyabut.todolist.repository.TaskRepository;
 import com.leandroyabut.todolist.repository.ToDoListRepository;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
@@ -16,6 +17,7 @@ import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
+@Slf4j
 public class ToDoListService {
 
     private final TaskRepository taskRepository;
@@ -31,6 +33,7 @@ public class ToDoListService {
     }
 
     public ToDoList getToDoListById(int id, boolean showCompleted, boolean showHighPriority) {
+        log.info("Retrieving to-do list with ID {}...", id);
         ToDoList toDoList = getToDoListById(id);
         List<Task> tasks = toDoList.getTasks().stream()
                 .filter(showCompleted ? Task::isCompleted : task -> true)

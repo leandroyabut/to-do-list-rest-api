@@ -31,10 +31,8 @@ public class ToDoListController {
     }
 
     @GetMapping("/{id}")
-    public ToDoList getToDoListById(@PathVariable Integer id,
-                                    @RequestParam(value = "completed", required = false) Boolean showCompleted,
-                                    @RequestParam(value = "highPriority", required = false) Boolean showHighPriority) {
-        return toDoListService.getToDoListById(id, showCompleted, showHighPriority);
+    public ToDoList getToDoListById(@PathVariable Integer id) {
+        return toDoListService.getToDoListById(id);
     }
 
     @GetMapping("/{toDoListId}/tasks/{taskId}")
